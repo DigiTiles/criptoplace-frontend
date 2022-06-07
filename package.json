@@ -18,8 +18,13 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@types/ol": "^6.5.3",
+    "cipher-base": "^1.0.4",
+    "geotiff": "^2.0.5",
+    "ol": "^6.14.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "web3": "^1.7.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -28,12 +33,23 @@
     "@angular/compiler-cli": "~12.1.1",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "ethers": "^5.6.8",
+    "https-browserify": "^1.0.0",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~4.3.2"
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "typescript": "~4.3.2",
+    "url": "^0.11.0"
   }
 }

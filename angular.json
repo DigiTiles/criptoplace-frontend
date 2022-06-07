@@ -34,9 +34,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "node_modules/ol/ol.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "pbf",
+              "http",
+              "https",
+              "xml-utils/find-tags-by-name.js",
+              "web3"
+            ]
           },
           "configurations": {
             "production": {
@@ -102,7 +110,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "node_modules/ol/ol.css"
             ],
             "scripts": []
           }
