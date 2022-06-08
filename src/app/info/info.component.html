@@ -1,0 +1,13 @@
+
+<h1>CriptoPlace</h1>
+<span>
+ <a href="#info">ENG</a><span>&nbsp;</span><a href="#info-ru">RU</a>
+</span>
+
+<app-info-eng
+  *ngIf="hash === 'info'"
+></app-info-eng>
+
+<app-info-ru
+  *ngIf="hash === 'info-ru'"
+></app-info-ru>

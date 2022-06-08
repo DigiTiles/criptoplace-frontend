@@ -1,0 +1,106 @@
+
+
+<p>
+  Inspired by Reddit's Project Place, the crypto-oplace is a platform for co-creation of the entire blockchain
+  community. The project has a similar idea - it's an infinite (notional) canvas that anyone can contribute to.
+  anyone! The whole canvas is divided into 16x16 pixels tiles. Add one or more pictures
+  To create a group art created by the crypto community.
+</p>
+<br>
+<p>
+  CryptoPlus does not aim to make millions or rob anyone.
+  Most of the smart contract features are free and the prices are rather symbolic.
+  We just like to come up with new uses for blockchain technology and
+  exploring the possibilities it presents to us.
+</p>
+
+<h2>
+  Project Features
+</h2>
+<ul>
+  <li>
+    The project is 100% blockchain-based! We don't use servers or
+    IPFS to store images they are completely stored in the blockchain forever.
+  </li>
+  <li>
+    The entire source code of the smartcontract, the backend and the frontend parts are in an open repository and can
+    clone by anyone who wants to. If you wish, you can deploy the project locally on your computer -
+    the data is in the blockchain and cannot be controlled by third parties.
+  </li>
+  <li>
+    Our contract is deployed on all popular blockchains and each builds its own unique art!
+  </li>
+  <li>
+    Initially, each tile is "free" and can be changed for free by any member of the
+    community for free (not counting the price of gas).
+  </li>
+  <li>
+    After you fill 999 tiles, you can buy tiles.
+    The initial price of each tile is calculated by the formula. The closer to the center, the more expensive!
+  </li>
+</ul>
+
+<h2>
+  CryptoPlace for everyone!
+</h2>
+
+<p>
+  Of course, the most valuable tiles in the center of the art will be occupied and quite expensive, but the field is huge.
+  No one is stopping you from occupying a small section of canvas on the outskirts and
+  create a small postcard for a friend or loved one.
+  By taking ownership of the tiles you can be sure that the picture will stay in the blockchain forever!
+</p>
+
+<h2>Project Roadmap</h2>
+
+<p>
+  The project is conditionally divided into three stages:
+</p>
+<ul>
+  <li>
+    The first stage is the most peaceful! The only function available
+    filling in the tiles. Anyone may fill in any crayon he likes!
+    The first stage ends after 999 tiles have been filled (including repeated fills of the same tiles).
+  </li>
+  <li>
+    After the 999th invocation of the Fill Tile function, the project enters the second stage.
+    Users have the opportunity to buy the ownership of the tiles.
+    This is not a complete project yet, but now only you can modify
+    purchased by you. While the number of modified tiles
+    (including re-changes) reaches 4999 and the number of purchased tiles reaches
+    reaches 4999 the second stage will continue.
+  </li>
+  <li>
+    The third stage begins when both conditions are met - the number of filled
+    The number of tiles reaches 4999 and the number of purchased tiles reaches 499. At this point the project
+    starts in full force! Tiles can buy, transfer, put up for sale, sold through the auction,
+    rent them out. Game on!
+  </li>
+</ul>
+
+
+<h2>Pricing</h2>
+
+<p>
+  Initially, the price of each tile is fixed.
+  The central tile costs 1 ETH (or another coin, depending on the blockchain on which the smart contract is deployed).
+  The 4 tiles around the central one cost 0.25 ETH each.
+  The 8 tiles of the next circle are worth 0.125 ETH each. The basic idea is that all
+  tiles of one circle costs a total of 1 ETH.
+  But at the same time a tile cannot cost less than 0.001 ETH. Or if we speak in formula language:
+  <br>
+  <i>
+    price = MAX(1 / MAX(1, (ABS(x) + ABS(y)) * 4), 0.001)
+  </i>
+</p>
+
+<h2>NFT</h2>
+<p>
+  Although the idea of cryptocurrency is much broader than the NFT concept, it supports the ESR-721 standard.
+  Our NFT is not mintable in the classic sense of the word.
+  After the project moves to the second stage, users can buy tiles into ownership.
+  After a user has bought a tile to own. After that, the cache becomes an NFT.
+  The X and Y coordinates of the cache are converted into a unique identifier (unsigned).
+  Therefore, not every cache can become NFT, but only those in the center.
+  In total half of all tiles can be converted to NFT.
+</p>
