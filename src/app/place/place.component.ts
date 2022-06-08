@@ -30,7 +30,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
           source: new XYZ({
             attributions: 'CriptoPlace:© 2022',
             url:
-              'http://crypto-place.local/tiles/{z}x{y}x{x}.png',
+              'http://crypto-place.local/tiles/{z}x{y}x{x}.png?' + Math.random(),
             maxZoom: 26,
             projection: 'EPSG:4326',
             tileSize: 128, // the tile size supported by the ArcGIS tile service
@@ -97,75 +97,6 @@ export class PlaceComponent implements OnInit, AfterViewInit {
             stateMutability: "nonpayable",
             type: "function",
           },
-          // {
-          //   inputs: [
-          //     {
-          //       internalType: "string",
-          //       name: "",
-          //       type: "string",
-          //     },
-          //   ],
-          //   name: "nameToFavoriteNumber",
-          //   outputs: [
-          //     {
-          //       internalType: "uint256",
-          //       name: "",
-          //       type: "uint256",
-          //     },
-          //   ],
-          //   stateMutability: "view",
-          //   type: "function",
-          // },
-          // {
-          //   inputs: [
-          //     {
-          //       internalType: "uint256",
-          //       name: "",
-          //       type: "uint256",
-          //     },
-          //   ],
-          //   name: "people",
-          //   outputs: [
-          //     {
-          //       internalType: "uint256",
-          //       name: "favoriteNumber",
-          //       type: "uint256",
-          //     },
-          //     {
-          //       internalType: "string",
-          //       name: "name",
-          //       type: "string",
-          //     },
-          //   ],
-          //   stateMutability: "view",
-          //   type: "function",
-          // },
-          // {
-          //   inputs: [],
-          //   name: "retrieve",
-          //   outputs: [
-          //     {
-          //       internalType: "uint256",
-          //       name: "",
-          //       type: "uint256",
-          //     },
-          //   ],
-          //   stateMutability: "view",
-          //   type: "function",
-          // },
-          // {
-          //   inputs: [
-          //     {
-          //       internalType: "uint256",
-          //       name: "_favoriteNumber",
-          //       type: "uint256",
-          //     },
-          //   ],
-          //   name: "store",
-          //   outputs: [],
-          //   stateMutability: "nonpayable",
-          //   type: "function",
-          // },
         ];
         //@ts-ignore
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -174,7 +105,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
         const contract = new ethers.Contract(contractAddress, abi, signer);
         console.log(contract)
         try {
-          console.log(contract.updateTile(1,1,'sssssss'));
+          // console.log(contract.updateTile(1,1,'sssssss'));
         } catch (error) {
           console.log(error);
         }
