@@ -3,7 +3,6 @@ import {Map, View} from "ol";
 import {Tile} from "ol/layer";
 import {XYZ} from "ol/source";
 import {fromLonLat} from "ol/proj";
-import {ethers} from "ethers";
 
 @Component({
   selector: 'app-place',
@@ -47,7 +46,6 @@ export class PlaceComponent implements OnInit, AfterViewInit {
       console.log(e)
     });
 
-
     //@ts-ignore
     if (typeof window.ethereum !== "undefined") {
       try {
@@ -57,10 +55,6 @@ export class PlaceComponent implements OnInit, AfterViewInit {
         console.log(error);
         alert('Unknown error');
       }
-      //@ts-ignore
-      ethereum.request({method: "eth_accounts"}).then(accounts => {
-        console.log(accounts)
-      });
     } else {
       alert("This Web3 application \r\nUse MetaMask extension to use the application features");
     }

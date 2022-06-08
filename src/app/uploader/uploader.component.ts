@@ -47,8 +47,7 @@ export class UploaderComponent {
     }
   }
 
-  submitFile() {
-    console.log(this.xPosition);
+  async submitFile() {
     if (
       (!this.xPosition && this.xPosition !== 0) ||
       (!this.yPosition && this.yPosition !== 0)
@@ -56,51 +55,59 @@ export class UploaderComponent {
       alert("Please, select the tile (X Y coordinates) to post image!")
       return;
     }
-    if (
-      (this.xPosition || this.xPosition === 0) &&
-      (this.yPosition || this.yPosition === 0) &&
-      this.fileVerified
-    ) {
-      //@ts-ignore
-      ethereum.request({method: "eth_accounts"}).then(accounts => {
-        console.log(accounts)
-        const contractAddress = '0x61c7230977b55DfaB8363E68F9536B88443af98F';
-        // const contractAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
-        const abi = [
-          {
-            inputs: [
-              {
-                name: "x",
-                type: "int256",
-              },
-              {
-                name: "y",
-                type: "int256",
-              },
-              {
-                name: "image",
-                type: "string",
-              }
-            ],
-            name: "updateTile",
-            outputs: [],
-            stateMutability: "nonpayable",
-            type: "function",
-          },
-        ];
-        //@ts-ignore
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        console.log(signer)
-        const contract = new ethers.Contract(contractAddress, abi, signer);
-        console.log(contract)
-        try {
-          contract.updateTile(this.xPosition, this.yPosition, this.file)
-        } catch (error) {
-          alert(error);
-        }
-      });
 
+
+    if (!this.fileVerified) {
+      alert("Please, select a file for publication!")
+      return;
     }
+
+    //@ts-ignore
+    const chainId: number = parseInt(await ethereum.request({method: 'net_version'}));
+    console.log(chainId)
+    if (chainId !== 3) {
+      alert("DApp use Ethereum Ropsten test chain! Please, use correct chain.")
+      return;
+    }
+
+    //@ts-ignore
+    ethereum.request({method: "eth_accounts"}).then(accounts => {
+      console.log(accounts)
+      const contractAddress = '0x61c7230977b55DfaB8363E68F9536B88443af98F';
+      // const contractAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
+      const abi = [
+        {
+          inputs: [
+            {
+              name: "x",
+              type: "int256",
+            },
+            {
+              name: "y",
+              type: "int256",
+            },
+            {
+              name: "image",
+              type: "string",
+            }
+          ],
+          name: "updateTile",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ];
+      //@ts-ignore
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      console.log(signer)
+      const contract = new ethers.Contract(contractAddress, abi, signer);
+      console.log(contract)
+      try {
+        contract.updateTile(this.xPosition, this.yPosition, this.file)
+      } catch (error) {
+        alert(error);
+      }
+    });
   }
 }
