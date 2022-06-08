@@ -1,1 +1,10 @@
-<input type="file" onchange="console.log(event.target.files)" accept="image/png" (change)="onFileSelected($event)">
+<input [(ngModel)]="xPosition" type="number" min="-100000" max="100000" placeholder="X">
+<input [(ngModel)]="yPosition" type="number" min="-100000" max="100000" placeholder="Y">
+
+<div class="uploader">
+  <input class="uploader__file" type="file" onchange="console.log(event.target.files)" accept="image/png"
+         (change)="onFileSelected($event)">
+  <div class="uploader__placeholder" *ngIf="!fileVerified">Click to select file (*.png 16x16px)</div>
+  <img class="uploader__pic" *ngIf="fileVerified" [src]="'data:image/png;base64,'+file">
+</div>
+<button class="submitter" (click)="submitFile()">Submit</button>

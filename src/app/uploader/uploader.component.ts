@@ -6,89 +6,101 @@ import {ethers} from "ethers";
   templateUrl: './uploader.component.html',
   styleUrls: ['./uploader.component.sass']
 })
-export class UploaderComponent implements OnInit {
+export class UploaderComponent {
+  xPosition!: number;
+  yPosition!: number;
 
-  fileName = '';
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  fileVerified = false;
+  file!: string;
 
   onFileSelected(event: any) {
-
+    this.fileVerified = false;
     const file: File = event.target.files[0];
 
     if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      console.log(file)
-      let fr = new FileReader();
+      const fr = new FileReader();
       fr.onload = () => { // when file has loaded
-        console.log(fr.result)
-        let img = new Image();
+        const img = new Image();
         img.onload = () => {
-          console.log(img.width);
-          console.log(img.height);
-          if (img.width === 16 && img.height === 16 && fr.result && fr.result.toString().match(/^data:image\/png;base64,(.*)=$/)) {
-
-            //@ts-ignore
-            ethereum.request({method: "eth_accounts"}).then(accounts => {
-              console.log(accounts)
-              const contractAddress = '0x5fbdb2315678afecb367f032d93f642f64180aa3';
-              // const contractAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
-              const abi = [
-                {
-                  inputs: [
-                    {
-                      name: "x",
-                      type: "int256",
-                    },
-                    {
-                      name: "y",
-                      type: "int256",
-                    },
-                    {
-                      name: "image",
-                      type: "string",
-                    }
-                  ],
-                  name: "updateTile",
-                  outputs: [],
-                  stateMutability: "nonpayable",
-                  type: "function",
-                },
-              ];
-              //@ts-ignore
-              const provider = new ethers.providers.Web3Provider(window.ethereum);
-              const signer = provider.getSigner();
-              console.log(signer)
-              const contract = new ethers.Contract(contractAddress, abi, signer);
-              console.log(contract)
-              try {
-                if (fr.result) {
-                  console.log(fr.result.toString().replace(/^data:image\/png;base64,(.*)=$/, '$1'));
-                  console.log(contract.updateTile(5, 6, fr.result.toString().replace(/^data:image\/png;base64,(.*)=$/, '$1')));
-                }
-
-              } catch (error) {
-                console.log(error);
-              }
-
-
-            });
+          if (!fr.result) {
+            alert('Something goes wrong.');
+            return;
           }
-
+          console.log(fr.result.toString());
+          if (!fr.result.toString().match(/^data:image\/png;base64,(.*)$/)) {
+            alert('The file should be PNG image!');
+            return;
+          }
+          if (img.width !== 16 || img.height !== 16) {
+            alert('The image should be 16x16 pixels size!');
+            return;
+          }
+          this.fileVerified = true;
+          this.file = fr.result.toString().replace(/^data:image\/png;base64,(.*)$/, '$1');
         };
-        if (fr.result)
+        if (fr.result) {
           img.src = fr.result.toString(); // The data URL
+        }
       };
 
       fr.readAsDataURL(file);
+    }
+  }
+
+  submitFile() {
+    console.log(this.xPosition);
+    if (
+      (!this.xPosition && this.xPosition !== 0) ||
+      (!this.yPosition && this.yPosition !== 0)
+    ) {
+      alert("Please, select the tile (X Y coordinates) to post image!")
+      return;
+    }
+    if (
+      (this.xPosition || this.xPosition === 0) &&
+      (this.yPosition || this.yPosition === 0) &&
+      this.fileVerified
+    ) {
+      //@ts-ignore
+      ethereum.request({method: "eth_accounts"}).then(accounts => {
+        console.log(accounts)
+        const contractAddress = '0x61c7230977b55DfaB8363E68F9536B88443af98F';
+        // const contractAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
+        const abi = [
+          {
+            inputs: [
+              {
+                name: "x",
+                type: "int256",
+              },
+              {
+                name: "y",
+                type: "int256",
+              },
+              {
+                name: "image",
+                type: "string",
+              }
+            ],
+            name: "updateTile",
+            outputs: [],
+            stateMutability: "nonpayable",
+            type: "function",
+          },
+        ];
+        //@ts-ignore
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        console.log(signer)
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        console.log(contract)
+        try {
+          contract.updateTile(this.xPosition, this.yPosition, this.file)
+        } catch (error) {
+          alert(error);
+        }
+      });
+
     }
   }
 }

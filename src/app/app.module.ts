@@ -9,6 +9,7 @@ import { InfoRuComponent } from './info-ru/info-ru.component';
 import { InfoEngComponent } from './info-eng/info-eng.component';
 import { InfoComponent } from './info/info.component';
 import {RouterModule} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([])
   ],
   providers: [],
