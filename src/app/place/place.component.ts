@@ -30,7 +30,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
           source: new XYZ({
             attributions: 'CriptoPlace:© 2022',
             url:
-              'http://crypto-place.local/tiles/{z}x{y}x{x}.png?' + Math.random(),
+              'http://crypto-place.local/tiles/{z}x{x}x{y}.png?'+Math.random(),
             maxZoom: 26,
             projection: 'EPSG:4326',
             tileSize: 128, // the tile size supported by the ArcGIS tile service
