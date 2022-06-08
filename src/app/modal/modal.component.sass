@@ -1,0 +1,28 @@
+:host
+  display: block
+  position: fixed
+  background-color: azure
+  width: 100vw
+  height: 100vh
+  top: 0
+  z-index: 1
+
+.flex
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+
+$aside-width: 6%
+
+.flex-basis-center
+  flex-basis: calc(100% - (2 * #{$aside-width}))
+
+.flex-basis-aside
+  flex-basis: $aside-width
+
+.center-content
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  flex-direction: column
+  padding-top: 1em
