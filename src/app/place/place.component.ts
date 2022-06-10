@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Feature, Map, Overlay, View} from "ol";
 import {Tile} from "ol/layer";
 import {TileDebug, XYZ} from "ol/source";
@@ -6,6 +6,7 @@ import {fromLonLat, get} from "ol/proj";
 import {Polygon} from "ol/geom";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-place',
@@ -13,8 +14,14 @@ import VectorSource from "ol/source/Vector";
   styleUrls: ['./place.component.sass']
 })
 export class PlaceComponent implements OnInit, AfterViewInit {
+  @ViewChild('tailSelector') tailSelector!: ElementRef;
+  selectedX!: number;
+  selectedY!: number;
+  selectedImage!: string;
+
   map!: Map;
   selectorPolygon!: Polygon;
+
 
   constructor() {
   }
@@ -23,13 +30,17 @@ export class PlaceComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const layers = [];
     const layerSource = new XYZ({
       attributions: 'CriptoPlace:© 2022',
-      url: 'http://tiles.cripto-place.com/tiles/{z}x{x}x{y}.png?' + Math.random(),
+      url: 'https://tiles.cripto-place.com/tiles/{z}x{x}x{y}.png?' + Math.random(),
       maxZoom: 26,
       minZoom: 20,
       projection: 'EPSG:3857',
     });
+    layers.push(new Tile({
+      source: layerSource,
+    }));
 
     const mapView = new View({
       center: fromLonLat([0, 0]),
@@ -45,10 +56,8 @@ export class PlaceComponent implements OnInit, AfterViewInit {
       [90, 90]
     ]]);
 
-    const div = document.getElementById('dddd') as HTMLElement;
-
     const overlay = new Overlay({
-      element: div,
+      element: this.tailSelector.nativeElement,
       autoPan: true,
       autoPanAnimation: {
         duration: 150
@@ -66,28 +75,29 @@ export class PlaceComponent implements OnInit, AfterViewInit {
       features: [iconFeature]
     });
 
+    layers.push(new VectorLayer({
+      source: vectorSource
+    }));
+
+    if (!environment.production) {
+      //add debug layer
+      layers.push(new Tile({
+        source: new TileDebug({
+          projection: 'EPSG:3857',
+          tileGrid: layerSource.getTileGrid()
+        })
+      }))
+    }
+
     this.map = new Map({
       target: 'map',
-      layers: [
-        new Tile({
-          source: layerSource,
-        }),
-        new VectorLayer({
-          source: vectorSource
-        }),
-        new Tile({
-          source: new TileDebug({
-            projection: 'EPSG:3857',
-            tileGrid: layerSource.getTileGrid()
-          })
-        })
-      ],
-      overlays:[
-        overlay
-      ],
+      layers: layers,
+      overlays: [overlay],
       view: mapView
     });
+
     const self = this;
+
     this.map.on('singleclick', function (e) {
       const grid = layerSource.getTileGrid();
       const zoom = mapView.getZoom()
@@ -97,16 +107,17 @@ export class PlaceComponent implements OnInit, AfterViewInit {
         console.log('tile z,x,y is:', tileCord[0], tileCord[1] - 33554432, tileCord[2] - 33554432);
         console.log(layerSource.getTileUrlFunction()(tileCord, 1, get('EPSG:3857')));
 
-        const _x = tileCord[1] - 33554432;
-        const _y = tileCord[2] - 33554432;
+        self.selectedX = tileCord[1] - 33554432;
+        self.selectedY = tileCord[2] - 33554432;
+        self.selectedImage = `https://tiles.cripto-place.com/tiles/26x${tileCord[1]}x${tileCord[2]}.png?` + Math.random();
 
         const coordinatesPerTile = 0.59717;
 
         self.selectorPolygon.setCoordinates([[
-          [_x * coordinatesPerTile, _y * -coordinatesPerTile],
-          [(_x + 1) * coordinatesPerTile, _y * -coordinatesPerTile],
-          [(_x + 1) * coordinatesPerTile, (_y + 1) * -coordinatesPerTile],
-          [_x * coordinatesPerTile, (_y + 1) * -coordinatesPerTile]
+          [self.selectedX * coordinatesPerTile, self.selectedY * -coordinatesPerTile],
+          [(self.selectedX + 1) * coordinatesPerTile, self.selectedY * -coordinatesPerTile],
+          [(self.selectedX + 1) * coordinatesPerTile, (self.selectedY + 1) * -coordinatesPerTile],
+          [self.selectedX * coordinatesPerTile, (self.selectedY + 1) * -coordinatesPerTile]
         ]]);
         overlay.setPosition(e.coordinate)
       }

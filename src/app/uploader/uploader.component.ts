@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ethers} from "ethers";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-uploader',
@@ -73,30 +74,8 @@ export class UploaderComponent {
     //@ts-ignore
     ethereum.request({method: "eth_accounts"}).then(accounts => {
       console.log(accounts)
-      const contractAddress = '0x61c7230977b55DfaB8363E68F9536B88443af98F';
-      // const contractAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
-      const abi = [
-        {
-          inputs: [
-            {
-              name: "x",
-              type: "int256",
-            },
-            {
-              name: "y",
-              type: "int256",
-            },
-            {
-              name: "image",
-              type: "string",
-            }
-          ],
-          name: "updateTile",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-      ];
+      const contractAddress = environment.smartContractAddress;
+      const abi = environment.smartContractABI;
       //@ts-ignore
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
