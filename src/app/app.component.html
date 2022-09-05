@@ -1,6 +1,11 @@
 
 <app-place></app-place>
 <app-uploader></app-uploader>
+<div class="metamask"  [ngClass]="{metamask_active:getEth}">
+<img alt="metamask-logo" (click)="metaCheck()"  src="/assets/MetaMask_Fox_active.svg">
+
+</div>
+<span class="indicator"></span>
 <a href="#info">
 <img alt="logo" class="show-logo" src="/assets/logo.png">
 </a>

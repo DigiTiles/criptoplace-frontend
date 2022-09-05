@@ -10,6 +10,7 @@ import { InfoEngComponent } from './info-eng/info-eng.component';
 import { InfoComponent } from './info/info.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
+import { MetamaskService } from './metamask/metamask.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     RouterModule.forRoot([])
   ],
-  providers: [],
+  providers: [MetamaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
