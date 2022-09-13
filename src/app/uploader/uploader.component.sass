@@ -1,16 +1,15 @@
-*:host
+//*:host
   position: absolute
-  right: 20px
-  border-radius: 10px
-  border: 2px solid aliceblue
-  top: 20px
+  right: 200px
+  //border: 2px solid red
+  top: 250px
   width: 250px
   padding: 10px 30px
-  //height: 100px
-  background: darkseagreen
+  background: rgba(239, 239, 255, 1)
+
   overflow: hidden
 
-input, button
+//input, button
   width: 100%
   height: 40px
   line-height: 40px
@@ -20,29 +19,101 @@ input, button
   margin-bottom: 10px
 
 .uploader
+  position: absolute
+  top:250px
+  height: 370px
+  width: 390px
+  right: 200px
+  border: 1px solid rgba(239, 239, 255, 1)
+  background: rgba(239, 239, 255, 1)
+
+
+.uploaderHeading
+  display: flex
+  margin: 0
+  padding: 0
+  background: rgba(239, 239, 255, 1)
+
+.uploaderName
+  font-size: 30px
+  font-weight: 600
+  line-height: 40px
+  letter-spacing: 0em
+  text-align: center
+  margin: 0
+  padding: 20px 178px 20px 20px
+
+.closeIcon
+  width:12px
+  height:12px
+  margin: 34px 26px 34px auto
+  background-image: url(/assets/closeIcon.svg)
+  background-position: center
+  background-repeat: no-repeat
+  border: none
+  cursor: pointer
+
+.uploaderArea
   position: relative
-  overflow: hidden
-  background: beige
-  border: 3px solid olivedrab
-  border-radius: 6px
-  color: dodgerblue
-  width: 200px
-  height: 200px
-  margin-bottom: 10px
-  margin-left: 25px
-  &__file
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-    z-index: 1
-    opacity: 0
-  &__placeholder
-    text-align: center
-    margin-top: 50%
-    transform: translateY(-50%)
-    position: relative
-  &__pic
-    width: 100%
-    height: 100%
+  width:390px
+  height:270px
+  background: white
+  margin-bottom: 20px
+  //border:1px dashed black
+
+.uploadChanger
+  padding: 20px
+  //border: 1px solid red
+  display: flex
+  gap: 10px
+
+.changeButton
+  width: 170px
+  height: 40px
+  background: rgba(95, 109, 235, 1)
+  font-weight: 600
+  font-size: 16px
+  line-height: 22px
+  text-align: center
+  border: 1px solid rgba(95, 109, 235, 1)
+  cursor: pointer
+
+.uploadImg
+  margin: 0 20px
+  display: flex
+  gap:10px
+  width: 350px
+  height: 170px
+
+.imgSubmitArea
+  display: flex
+  flex-direction: column
+  width:170px
+  padding-top:40px
+
+.imgPreview
+  width:170px
+  height:170px
+  //border:1px dashed black
+  background: transparent
+  background-image: url(/assets/addImg.svg)
+  background-position: center
+  background-repeat: no-repeat
+  border: none
+  cursor: pointer
+
+.imgBtn
+  width:170px
+  height:60px
+  background: rgba(163, 255, 255, 1)
+  margin: 0 0 10px 0
+  padding: 0
+  font-weight: 600
+  font-size: 16px
+  text-align: center
+  line-height: 22px
+  border: 1px solid rgba(163, 255, 255, 1)
+  cursor: pointer
+
+.imgBtn:last-of-type
+  margin: 0

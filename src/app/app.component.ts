@@ -29,15 +29,15 @@ export class AppComponent implements OnInit {
     );
   }
 
-getAccount() {
-  this.extensionService.getAccount();
-}
+// getAccount() {
+//   this.extensionService.getAccount();
+// }
 
   metaCheck() {
    this.extensionService.checkExtension();
   }
-  get getEth(){ 
-    
+  get getEth(){
+
     //@ts-ignore
     return window.ethereum;
   }

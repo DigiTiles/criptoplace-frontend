@@ -1,10 +1,30 @@
-<input [(ngModel)]="xPosition" type="number" min="-100000" max="100000" placeholder="X">
-<input [(ngModel)]="yPosition" type="number" min="-100000" max="100000" placeholder="Y">
+<!-- <input [(ngModel)]="xPosition" type="number" min="-100000" max="100000" placeholder="X">
+<input [(ngModel)]="yPosition" type="number" min="-100000" max="100000" placeholder="Y"> -->
 
-<div class="uploader">
+<!-- <div class="uploader">
   <input class="uploader__file" type="file" onchange="console.log(event.target.files)" accept="image/png"
          (change)="onFileSelected($event)">
   <div class="uploader__placeholder" *ngIf="!fileVerified">Click to select file (*.png 16x16px)</div>
   <img class="uploader__pic" *ngIf="fileVerified" [src]="'data:image/png;base64,'+file">
 </div>
-<button class="submitter" (click)="submitFile()">Submit</button>
+<button class="submitter" (click)="submitFile()">Submit</button> -->
+
+<div class="uploader">
+  <div class="uploaderHeading">
+    <p class="uploaderName">Tile 16 x 16</p>
+    <button class="closeIcon" src="/assets/closeIcon.svg"></button>
+  </div>
+  <div class="uploaderArea">
+    <div class="uploadChanger">
+      <button class="changeButton">Image</button>
+      <button class="changeButton">Painting</button>
+    </div>
+    <div class="uploadImg">
+      <button class="imgPreview"></button>
+      <div class="imgSubmitArea">
+        <button class="imgBtn">Donwload Image</button>
+        <button class="imgBtn">Done</button>
+      </div>
+    </div>
+  </div>
+</div>

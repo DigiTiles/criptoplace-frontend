@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class MetamaskService {
   currentAccount = null;
   constructor() {
-    setInterval(this.getAccount, 3000);
+    // setInterval(this.getAccount, 3000);
   }
 
   public async checkExtension() {
@@ -26,19 +26,19 @@ export class MetamaskService {
     }
   }
 
-  public async getAccount() {
-    //@ts-ignore
-    const accounts = await ethereum.request({ method: 'eth_accounts' });
-    const indicator = document.querySelector('.indicator');
-    const account = accounts[0];
-    if (account !== undefined || 0) {
-      try {
-        indicator?.classList.add('indicator_active');
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      indicator?.classList.remove('indicator_active');
-    }
-  }
+  // public async getAccount() {
+  //   //@ts-ignore
+  //   const accounts = await ethereum.request({ method: 'eth_accounts' });
+  //   const indicator = document.querySelector('.indicator');
+  //   const account = accounts[0];
+  //   if (account !== undefined || 0) {
+  //     try {
+  //       indicator?.classList.add('indicator_active');
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   } else {
+  //     indicator?.classList.remove('indicator_active');
+  //   }
+  // }
 }
