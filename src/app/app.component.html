@@ -1,7 +1,7 @@
-
 <app-place>
 
 </app-place>
+<app-currency-selector></app-currency-selector>
 <div class="header">
   <img class="logo" src="/assets/Logo.svg">
   <ul class="header-links">
@@ -12,18 +12,7 @@
     <li class="link">NFT</li>
     <img class="metaLogo" src="/assets/metamask_disabled.svg">
   </ul>
-  <!-- <div>
-    <select class="cryptoMenu">
-      <option>Bitcoin<p class="cryptoName">(BTC)</p></option>
-      <option>Ethereum<p class="cryptoName">(ETH)</p></option>
-      <option>Tether<p class="cryptoName">(USDT)</p></option>
-      <option>Binance Smart Chain<p class="cryptoName">(BNB)</p></option>
-      <option>Solana<p class="cryptoName">(SOL)</p></option>
-      <option>Avalanche<p class="cryptoName">(AVAX)</p></option>
-    </select>
-    </div>
-
-</div> -->
+</div>
 
 <app-uploader></app-uploader>
 <!-- <div class="metamask"  [ngClass]="{metamask_active:getEth}">
@@ -37,4 +26,3 @@
 <app-modal *ngIf="hash.startsWith('info')">
   <app-info [hash]="hash"></app-info>
 </app-modal> -->
-
