@@ -11,6 +11,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { MetamaskService } from './metamask/metamask.service';
 import { CurrencySelectorComponent } from './currency-selector/currency-selector.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CurrencySelectorComponent } from './currency-selector/currency-selector
   ],
   imports: [
     BrowserModule,
+    NgSelectModule,
     FormsModule,
     RouterModule.forRoot([])
   ],

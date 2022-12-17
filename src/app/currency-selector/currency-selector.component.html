@@ -8,3 +8,15 @@
       <option>Avalanche<p class="cryptoName">(AVAX)</p></option>
     </select>
 
+<div class="cryptoMenu">
+ <ng-select [(ngModel)]="selectedCurrency">
+  <ng-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ng-option>
+</ng-select>
+
+<!--Using items input-->
+<ng-select [items]="currencies"
+          bindLabel="name"
+          bindValue="id"
+          [(ngModel)]="selectedCurrency">
+</ng-select>
+</div>
