@@ -11,6 +11,7 @@ import { InfoComponent } from './info/info.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { MetamaskService } from './metamask/metamask.service';
+import { CurrencySelectorComponent } from './currency-selector/currency-selector.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MetamaskService } from './metamask/metamask.service';
     ModalComponent,
     InfoRuComponent,
     InfoEngComponent,
-    InfoComponent
+    InfoComponent,
+    CurrencySelectorComponent
   ],
   imports: [
     BrowserModule,
