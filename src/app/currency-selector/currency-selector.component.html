@@ -1,22 +1,19 @@
-
-    <select class="cryptoMenu">
-      <option>Bitcoin<p class="cryptoName">(BTC)</p></option>
-      <option>Ethereum<p class="cryptoName">(ETH)</p></option>
-      <option>Tether<p class="cryptoName">(USDT)</p></option>
-      <option>Binance Smart Chain<p class="cryptoName">(BNB)</p></option>
-      <option>Solana<p class="cryptoName">(SOL)</p></option>
-      <option>Avalanche<p class="cryptoName">(AVAX)</p></option>
-    </select>
-
 <div class="cryptoMenu">
- <ng-select [(ngModel)]="selectedCurrency">
-  <ng-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ng-option>
-</ng-select>
+  <ng-select [(ngModel)]="selectedCurrency">
+    <!-- <ng-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ng-option> -->
+    <ng-option >Bitcoin</ng-option>
+    <ng-option>Ethereum</ng-option>
+    <ng-option>Tether</ng-option>
+    <ng-option><img src="../../assets/binanceLogo.svg">Binance Smart Chain</ng-option>
+    <ng-option><img src="../../assets/solanaLogo.svg">Solana</ng-option>
+    <ng-option><img src="../../assets/avalancheLogo.svg">Avalanche</ng-option>
+  </ng-select>
 
-<!--Using items input-->
-<ng-select [items]="currencies"
+  <!-- одно из двух можно использовать ^. Если оба - будет два инпута-->
+
+  <!-- Using items input-->
+  <!-- <ng-select>ng-select [items]="currencies"
           bindLabel="name"
-          bindValue="id"
-          [(ngModel)]="selectedCurrency">
-</ng-select>
+          bindValue="id">
+</ng-select> -->
 </div>
