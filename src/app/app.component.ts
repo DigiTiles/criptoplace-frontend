@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     private readonly extensionService: MetamaskService
   ) {}
 
-  title = 'criptoplace-frontend';
+  title = 'DigiTiles';
 
   ngOnInit(): void {
     this.route.fragment.pipe(tap(console.log)).subscribe(
