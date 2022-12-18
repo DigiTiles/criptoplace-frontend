@@ -65,6 +65,11 @@ export class CurrencySelectorComponent implements OnInit {
   dropdownOpen() {
     this.contentdropdown = !this.contentdropdown
   }
+  srcvariable: string = '../../assets/bitcoinLogo.svg'
+  altvariable: string = 'bitcoin logo'
+  namevariable: string = 'Bitcoin'
+  colorvariable: number = 0;
+
 
   changecode(arr: any) {
     this.srcvariable = arr.src;
@@ -74,10 +79,4 @@ export class CurrencySelectorComponent implements OnInit {
     this.colorvariable = arr.id;
     this.contentdropdown = false
   }
-
-
-  srcvariable: string = '../../assets/bitcoinLogo.svg'
-  altvariable: string = 'bitcoin logo'
-  namevariable: string = 'Bitcoin'
-  colorvariable:number = 0;
 }
