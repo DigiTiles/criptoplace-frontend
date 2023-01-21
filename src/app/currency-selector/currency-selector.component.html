@@ -1,34 +1,20 @@
-<!-- <div class="cryptoMenu">
-  <ng-select [(ngModel)]="selectedCurrency">
-   <ng-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/bitcoinLogo.svg">Bitcoin</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/ethereumLogo.svg">Ethereum</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/tetherLogo.svg">Tether</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/binanceLogo.svg">Binance Smart Chain</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/solanaLogo.svg">Solana</ng-option>
-    <ng-option><img class="logoOption" src="../../assets/avalancheLogo.svg">Avalanche</ng-option>
-  </ng-select>
-
- одно из двух можно использовать ^. Если оба - будет два инпута-->
-
-<!-- Using items input-->
-<!-- <ng-select>ng-select [items]="currencies"
-          bindLabel="name"
-          bindValue="id">
-</ng-select>
-</div> -->
-
-
-
-
 <div class="container">
   <div class="main" (click)="dropdownOpen()">
-    <img src="{{srcvariable}}" alt="{{altvariable}}">{{namevariable}}
+    <img class="curImg" src="{{ srcvariable }}" alt="{{ altvariable }}" />
+    <p class="curName">{{ namevariable }}</p>
+    <img class="dropdown" src="../../assets/arrowDown.svg" />
   </div>
+
   <div class="content" *ngIf="contentdropdown">
-    <ul>
-      <li *ngFor="let arr of array; index as i" [class.active]="i === colorvariable" (click)="changecode(arr)">
-        <img src="{{arr.src}}" alt="{{arr.alt}}"> {{arr.name}}
+    <ul class="list">
+      <li
+        class="list__select"
+        *ngFor="let arr of array; index as i"
+        [class.active]="i === colorvariable"
+        (click)="changecode(arr)"
+      >
+        <img class="curImg" src="{{ arr.src }}" alt="{{ arr.alt }}" />
+        <p class="curName">{{ arr.name }}</p>
       </li>
     </ul>
   </div>
