@@ -1,38 +1,20 @@
-//*:host
-  position: absolute
-  right: 200px
-  //border: 2px solid red
-  top: 250px
-  width: 250px
-  padding: 10px 30px
-  background: rgba(239, 239, 255, 1)
-
-  overflow: hidden
-
-//input, button
-  width: 100%
-  height: 40px
-  line-height: 40px
-  border: none
-  border-radius: 4px
-  text-align: center
-  margin-bottom: 10px
-
 .uploader
   position: absolute
   top:250px
   height: 370px
   width: 390px
   right: 200px
-  border: 1px solid rgba(239, 239, 255, 1)
-  background: rgba(239, 239, 255, 1)
+  background: rgba(166, 239, 104, 1)
+  box-shadow: 6px 6px 0px #F266FF
+  border: 5px solid rgba(166, 239, 104, 1)
 
 
 .uploaderHeading
   display: flex
   margin: 0
   padding: 0
-  background: rgba(239, 239, 255, 1)
+  background: rgba(166, 239, 104, 1)
+  align-items: center
 
 .uploaderName
   font-size: 30px
@@ -41,7 +23,25 @@
   letter-spacing: 0em
   text-align: center
   margin: 0
-  padding: 20px 178px 20px 20px
+  padding: 20px 0 20px 20px
+
+.uploader_status
+  height: 28px
+  width: 52px
+  font-size: 18px
+  font-weight: 600
+  line-height: 28px
+  letter-spacing: 0em
+  text-align: center
+
+.box
+  width:72px
+  height: 40px
+  border: 1px solid rgba(48, 50, 44, 1)
+  margin: 0 0 0 20px
+  display: flex
+  justify-content: center
+  align-items: center
 
 .closeIcon
   width:12px
@@ -52,31 +52,35 @@
   background-repeat: no-repeat
   border: none
   cursor: pointer
+  background-color: transparent
 
 .uploaderArea
   position: relative
   width:390px
   height:270px
-  background: white
+  background: rgba(254, 253, 241, 1)
   margin-bottom: 20px
-  //border:1px dashed black
 
 .uploadChanger
   padding: 20px
-  //border: 1px solid red
   display: flex
   gap: 10px
 
 .changeButton
-  width: 170px
+  width: 110px
   height: 40px
-  background: rgba(95, 109, 235, 1)
+  background-color: transparent
   font-weight: 600
   font-size: 16px
   line-height: 22px
   text-align: center
-  border: 1px solid rgba(95, 109, 235, 1)
+  border: 1px solid rgba(166, 239, 104, 1)
   cursor: pointer
+
+.changeButton:hover
+  background: rgba(92, 178, 24, 1)
+  color: white
+
 
 .uploadImg
   margin: 0 20px
@@ -94,26 +98,28 @@
 .imgPreview
   width:170px
   height:170px
-  //border:1px dashed black
   background: transparent
   background-image: url(/assets/addImg.svg)
   background-position: center
   background-repeat: no-repeat
-  border: none
+  border: 2px solid rgba(242, 102, 255, 1)
   cursor: pointer
 
 .imgBtn
   width:170px
   height:60px
-  background: rgba(163, 255, 255, 1)
+  background: transparent
+  border: 2px solid rgba(248, 230, 75, 1)
   margin: 0 0 10px 0
   padding: 0
   font-weight: 600
   font-size: 16px
   text-align: center
   line-height: 22px
-  border: 1px solid rgba(163, 255, 255, 1)
   cursor: pointer
+
+.imgBtn:hover
+  background: rgba(248, 230, 75, 1)
 
 .imgBtn:last-of-type
   margin: 0

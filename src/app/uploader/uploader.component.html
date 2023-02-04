@@ -12,15 +12,21 @@
 <div class="uploader">
   <div class="uploaderHeading">
     <p class="uploaderName">Tile 16 x 16</p>
+    <div class="box">
+      <p class="uploader_status">FREE</p>
+    </div>
     <button class="closeIcon" src="/assets/closeIcon.svg"></button>
   </div>
   <div class="uploaderArea">
     <div class="uploadChanger">
       <button class="changeButton">Image</button>
       <button class="changeButton">Painting</button>
+      <button class="changeButton">Info</button>
     </div>
     <div class="uploadImg">
-      <button class="imgPreview"></button>
+      <label  class="imgPreview">
+      <input type="file" accept="image/png" (change)="onFileSelected($event)" hidden>
+    </label>
       <div class="imgSubmitArea">
         <button class="imgBtn">Donwload Image</button>
         <button class="imgBtn">Done</button>
