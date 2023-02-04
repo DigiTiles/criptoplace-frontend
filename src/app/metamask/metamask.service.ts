@@ -17,7 +17,7 @@ export class MetamaskService {
         await ethereum.request({ method: 'eth_requestAccounts' });
       } catch (error) {
         console.log(error);
-        alert('Unknown error');
+        alert('user rejected login');
       }
     } else {
       alert(
