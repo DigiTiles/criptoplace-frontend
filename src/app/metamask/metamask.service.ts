@@ -29,16 +29,16 @@ export class MetamaskService {
   // public async getAccount() {
   //   //@ts-ignore
   //   const accounts = await ethereum.request({ method: 'eth_accounts' });
-  //   const indicator = document.querySelector('.indicator');
+  //   const indicator = document.querySelector('.metaLogo');
   //   const account = accounts[0];
   //   if (account !== undefined || 0) {
   //     try {
-  //       indicator?.classList.add('indicator_active');
+  //       indicator?.classList.add('metaLogo_active');
   //     } catch (error) {
   //       console.log(error);
   //     }
   //   } else {
-  //     indicator?.classList.remove('indicator_active');
+  //     indicator?.classList.remove('metaLogo_active');
   //   }
   // }
 }
