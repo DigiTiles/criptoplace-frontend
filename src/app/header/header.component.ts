@@ -12,7 +12,7 @@ import {ContractService} from "../../services/contract.service";
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-
+  pageTitle: string = '';
   hash = '';
   myTiles: YourTile[] = [];
 
@@ -80,6 +80,10 @@ export class HeaderComponent implements OnInit {
         name: "",
       });
     }
+
+    this.pageService.page$.subscribe((page) => {
+      this.pageTitle = page;
+    });
   }
 
   metaCheck() {

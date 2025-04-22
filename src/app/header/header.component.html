@@ -1,5 +1,5 @@
 <div class="header-container ">
-  <div class="header">
+  <div class="header" [ngClass]="pageTitle !== '' ? 'header-second-page' : ''">
     <img class="logo" src="/assets/Logo.svg" alt="Logo">
     <ul class="header-links text-header">
       <li class="link"><app-currency-selector [tiles]="myTiles" [isImage]="true" [variable]="variableTile" [isRight]="true"></app-currency-selector></li>
