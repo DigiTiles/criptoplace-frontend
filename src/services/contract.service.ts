@@ -8,7 +8,7 @@ export class ContractService {
   private contract: ethers.Contract | null = null;
   private provider: ethers.providers.Web3Provider | null = null;
   private signer: ethers.Signer | null = null;
-  private contractAddress = '0x3C27c4100dbC3Ee94Eb3600610b0e7A4a6acCf0D';
+  private contractAddress = '0xADfd98b62505fd259737DB55FAd7E993CA34fC31';
   private abi = [
     {
       inputs: [
