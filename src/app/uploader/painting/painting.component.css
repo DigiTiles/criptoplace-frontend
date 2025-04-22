@@ -1,0 +1,89 @@
+.painting-container {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 20px 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(16, 9px);
+  gap: 1px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(16, 9px);
+  gap: 1px;
+}
+
+.cell {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.palette {
+  margin-bottom: 10px;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 16px);
+  grid-template-rows: repeat(3, 16px);
+  gap: 1px;
+  margin-bottom: 10px;
+}
+
+.palette-cell {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  border: 1px solid #FEFDF1;
+  transition: all 0.2s ease;
+}
+
+.palette-cell:hover {
+  border-color: #000;
+}
+
+.palette-cell.selected {
+  width: 15px;
+  height: 15px;
+  border-color: #000;
+  box-shadow: 0 0 5px #000;
+  z-index: 1;
+}
+
+textarea {
+  margin-top: 10px;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.button {
+  margin-bottom: 9px;
+  cursor: pointer;
+  background-color: #F8E64B;
+  border: none;
+  width: 170px;
+  height: 60px;
+  font-family: "Syne", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+}
+
+/*# sourceMappingURL=painting.component.css.map */

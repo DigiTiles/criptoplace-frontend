@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  smartContractChainId: 3,
-  smartContractAddress: '0x61c7230977b55DfaB8363E68F9536B88443af98F',
+  smartContractChainId: 97,
+  smartContractAddress: '0xE1D4A21B63CAd86B6A36828341a800546223A32d',
   smartContractABI: [
     {
       inputs: [

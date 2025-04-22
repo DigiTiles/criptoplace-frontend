@@ -1,0 +1,8 @@
+<div class="image-container">
+  <img class="tail-image" [src]="image" alt="tile" onerror="this.src='/../../../assets/plug-tile.svg'" />
+  <div class="button-container">
+    <input type="file" accept="image/png" (change)="onFileSelected($event)" hidden #fileInput />
+    <button class="submitter submitter-white" (click)="fileInput.click()">Replace the image</button>
+    <button class="submitter submitter-yellow" (click)="setImage()">Done</button>
+  </div>
+</div>

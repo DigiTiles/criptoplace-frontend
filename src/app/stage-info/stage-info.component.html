@@ -1,0 +1,38 @@
+<div class="stage-info-container">
+  <div class="container container-selector" >
+    <div class="main" (click)="dropdownOpen()">
+      <img class="curImg" src="{{ srcvariable }}" alt="{{ altvariable }}" />
+      <p class="curName">{{ namevariable }}</p>
+      <img class="dropdown" src="../../assets/arrowDown.svg"  alt="Dropdown arrow"/>
+    </div>
+
+    <div class="content" *ngIf="contentdropdown">
+      <ul class="list">
+        <li
+          class="list__select"
+          *ngFor="let arr of array; index as i"
+          [class.active]="i === colorvariable"
+          (click)="changecode(arr)"
+        >
+          <img class="curImg" src="{{ arr.src }}" alt="{{ arr.alt }}" />
+          <p class="curName">{{ arr.name }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container container-stage text" >Stage 1</div>
+  <div class="container container-purchases text">
+    <div class="number-container">
+        <h3>100</h3>
+        <h5 class="h5-text">/499</h5>
+    </div>
+    <div class="text-container">tiles purchased</div>
+  </div>
+  <div class="container container-filled text" >
+    <div class="number-container">
+      <h3>59</h3>
+      <h5 class="h5-text">/999</h5>
+    </div>
+    <div class="text-container">tiles filled</div>
+  </div>
+</div>

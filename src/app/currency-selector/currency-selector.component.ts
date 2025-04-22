@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import {YourTile} from "../../interface/your-tile";
+import {InfoPageService} from "../../services/info-page.service";
 
 
 @Component({
@@ -7,67 +9,36 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ['./currency-selector.component.sass']
 })
 export class CurrencySelectorComponent implements OnInit {
-  constructor() { }
+  @Input() tiles: YourTile[] = [];
+  @Input() isImage: boolean = false;
+  @Input() variable: YourTile = {
+    id: 0,
+    src: "",
+    alt: "",
+    xPosition: 0,
+    yPosition: 0,
+    name: "",
+  };
+  @Input() isRight: boolean = false;
+  colorVariable: number = 0;
+  contentDropdown: boolean = false;
+
+  constructor(public pageService: InfoPageService) { }
 
   ngOnInit(): void {
   }
 
-  array: any = [
-    {
-      id: 0,
-      src: "../../assets/bitcoinLogo.svg",
-      alt: "bitcoin logo",
-      name: "Bitcoin (BTC)",
-    },
-    {
-      id: 1,
-      src: "../../assets/ethereumLogo.svg",
-      alt: "Ethereum logo",
-      name: " Ethereum (ETH)",
-    },
-    {
-      id: 2,
-      src: "../../assets/tetherLogo.svg",
-      alt: "Tether logo",
-      name: "Tether (USDT)",
-    },
-    {
-      id: 3,
-      src: "../../assets/binanceLogo.svg",
-      alt: "Binance Smart Chain logo",
-      name: "Binance Smart Chain (BNB)",
-    },
-    {
-      id: 4,
-      src: "../../assets/solanaLogo.svg",
-      alt: "Solana logo",
-      name: "Solana (SOL)"
-    },
-    {
-      id: 5,
-      src: "../../assets/avalancheLogo.svg",
-      alt: "Avalanche logo",
-      name: "Avalanche (AVAX)",
-    },
-  ]
 
-
-  contentdropdown: boolean = false;
   dropdownOpen() {
-    this.contentdropdown = !this.contentdropdown
+    this.contentDropdown = !this.contentDropdown
   }
-  srcvariable: string = '../../assets/bitcoinLogo.svg'
-  altvariable: string = 'bitcoin logo'
-  namevariable: string = 'Bitcoin (BTC)'
-  colorvariable: number = 0;
 
-
-  changecode(arr: any) {
-    this.srcvariable = arr.src;
-    this.altvariable = arr.alt;
-    this.namevariable = arr.name;
-    this.srcvariable = arr.src;
-    this.colorvariable = arr.id;
-    this.contentdropdown = false
+  changeVariable(variable: any) {
+    this.variable = variable;
+    this.colorVariable = variable.id;
+    this.contentDropdown = false;
+    if (variable.name !== "") {
+      this.pageService.changePage(variable.name);
+    }
   }
 }

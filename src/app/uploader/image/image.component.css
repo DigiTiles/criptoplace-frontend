@@ -1,0 +1,53 @@
+.image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  height: 170px;
+  width: 350px;
+  padding: 0 20px;
+}
+
+.tail-image {
+  min-width: 170px;
+  max-width: 170px;
+  min-height: 170px;
+  max-height: 170px;
+  border: 2px solid #F266FF;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.button-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: end;
+  margin-left: 10px;
+  gap: 10px;
+}
+
+.submitter {
+  height: 60px;
+  width: 170px;
+  cursor: pointer;
+  font-family: "Syne", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+}
+
+.submitter-yellow {
+  background-color: #F8E64B;
+  border: none;
+}
+
+.submitter-white {
+  background-color: #FFFFFF;
+  border: 2px solid #F8E64B;
+}
+
+/*# sourceMappingURL=image.component.css.map */

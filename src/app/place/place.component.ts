@@ -8,11 +8,13 @@ import {
 import { Feature, Map, Overlay, View } from 'ol';
 import { Tile } from 'ol/layer';
 import { TileDebug, XYZ } from 'ol/source';
-import { fromLonLat, get } from 'ol/proj';
+import { fromLonLat} from 'ol/proj';
 import { Polygon } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { environment } from '../../environments/environment';
+import {ContractService} from "../../services/contract.service";
+import {PositionService} from "../../services/position.service";
 
 @Component({
   selector: 'app-place',
@@ -24,27 +26,33 @@ export class PlaceComponent implements OnInit, AfterViewInit {
   selectedX!: number;
   selectedY!: number;
   selectedImage!: string;
-
+  infoTitle: any = '';
+  private socket!: WebSocket;
+  private tileVersion = Date.now();
+  private tileLayer!: any;
+  private layerSource!: XYZ;
   map!: Map;
   selectorPolygon!: Polygon;
 
-  constructor() {}
-  ngOnInit(): void {}
+  constructor(protected criptoService: ContractService, protected positionService: PositionService) {}
+  async ngOnInit(): Promise<void> {
+    await this.criptoService.connectWallet();
+  }
   ngAfterViewInit(): void {
     const layers = [];
-    const layerSource = new XYZ({
-      attributions: 'CriptoPlace:© 2022',
-      url:
-        'https://tiles.cripto-place.com/tiles/{z}x{x}x{y}.png?' + Math.random(),
+    this.layerSource = new XYZ({
+      attributions: 'CriptoPlace:© 2025',
+      url: this.getTileUrl(),
       maxZoom: 26,
       minZoom: 20,
       projection: 'EPSG:3857',
     });
-    layers.push(
-      new Tile({
-        source: layerSource,
-      })
-    );
+
+    this.tileLayer = new Tile({
+      source: this.layerSource,
+    });
+
+    layers.push(this.tileLayer);
 
     const mapView = new View({
       center: fromLonLat([0, 0]),
@@ -93,7 +101,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
         new Tile({
           source: new TileDebug({
             projection: 'EPSG:3857',
-            tileGrid: layerSource.getTileGrid(),
+            tileGrid: this.layerSource.getTileGrid(),
           }),
         })
       );
@@ -106,28 +114,20 @@ export class PlaceComponent implements OnInit, AfterViewInit {
       view: mapView,
     });
 
+    this.initWebSocket();
+
     const self = this;
 
-    this.map.on('singleclick', function (e) {
-      const grid = layerSource.getTileGrid();
+    this.map.on('singleclick', (e) => {
+      const grid = this.layerSource.getTileGrid();
       const zoom = mapView.getZoom();
       if (zoom) {
         const tileCord = grid.getTileCoordForCoordAndZ(e.coordinate, 26);
-        console.log('clicked ', e.coordinate[0], e.coordinate[1]);
-        console.log(
-          'tile z,x,y is:',
-          tileCord[0],
-          tileCord[1] - 33554432,
-          tileCord[2] - 33554432
-        );
-        console.log(
-          layerSource.getTileUrlFunction()(tileCord, 1, get('EPSG:3857'))
-        );
 
         self.selectedX = tileCord[1] - 33554432;
         self.selectedY = tileCord[2] - 33554432;
         self.selectedImage =
-          `https://tiles.cripto-place.com/tiles/26x${tileCord[1]}x${tileCord[2]}.png?` +
+          `http://localhost:8080/tiles/26x${tileCord[1]}x${tileCord[2]}.png?` +
           Math.random();
 
         const coordinatesPerTile = 0.59717;
@@ -153,7 +153,46 @@ export class PlaceComponent implements OnInit, AfterViewInit {
           ],
         ]);
         overlay.setPosition(e.coordinate);
+
+        this.positionService.updatePosition(this.selectedX, this.selectedY, this.selectedImage);
       }
     });
+  }
+
+  getTileUrl(): string {
+    return 'http://localhost:8080/tiles/{z}x{x}x{y}.png?v=' + this.tileVersion;
+  }
+
+  refreshTiles(): void {
+    this.tileVersion = Date.now(); // обновим версию
+    const newSource = new XYZ({
+      attributions: 'CriptoPlace:© 2025',
+      url: this.getTileUrl(),
+      maxZoom: 26,
+      minZoom: 20,
+      projection: 'EPSG:3857',
+    });
+    this.tileLayer.setSource(newSource);
+  }
+
+  initWebSocket(): void {
+    this.socket = new WebSocket('ws://localhost:7070');
+
+    this.socket.onopen = () => {};
+
+    this.socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'tileUpdate') {
+        this.refreshTiles();
+      }
+    };
+
+    this.socket.onerror = (err) => {
+      console.error('WebSocket error:', err);
+    };
+
+    this.socket.onclose = () => {
+      setTimeout(() => this.initWebSocket(), 5000);
+    };
   }
 }

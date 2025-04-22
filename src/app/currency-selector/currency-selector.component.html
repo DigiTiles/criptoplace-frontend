@@ -1,20 +1,30 @@
 <div class="container">
   <div class="main" (click)="dropdownOpen()">
-    <img class="curImg" src="{{ srcvariable }}" alt="{{ altvariable }}" />
-    <p class="curName">{{ namevariable }}</p>
-    <img class="dropdown" src="../../assets/arrowDown.svg" />
+    <img *ngIf="isImage" class="curImg" src="{{ variable.src}}" alt="{{ variable.alt }}" />
+    <p *ngIf="variable.name"  class="curName">{{ variable.name }}</p>
+    <img
+      class="dropdown"
+      src="{{contentDropdown ? '../../assets/arrowUp.svg' : '../../assets/arrowDown.svg'}}"
+      alt="Dropdown arrow"
+    />
   </div>
 
-  <div class="content" *ngIf="contentdropdown">
+  <div class="content" *ngIf="contentDropdown" [ngClass]="isRight ? 'content-right' : 'content-left'">
     <ul class="list">
       <li
         class="list__select"
-        *ngFor="let arr of array; index as i"
-        [class.active]="i === colorvariable"
-        (click)="changecode(arr)"
+        *ngFor="let arr of tiles; index as i"
+        [class.active]="i === colorVariable"
+        (click)="changeVariable(arr)"
       >
-        <img class="curImg" src="{{ arr.src }}" alt="{{ arr.alt }}" />
-        <p class="curName">{{ arr.name }}</p>
+        <img *ngIf="isImage" class="curImg" src="{{ arr.src }}" alt="{{ arr.alt }}" onerror="this.src='/../../../assets/plugMyTile.svg'"/>
+        <p *ngIf="arr.name; else coordinate" class="curName">{{ arr.name }}</p>
+        <ng-template #coordinate>
+          <div class="coordinate-container">
+            <p class="curName">x: {{arr.xPosition}}</p>
+            <p class="curName">y: {{arr.yPosition}}</p>
+          </div>
+        </ng-template>
       </li>
     </ul>
   </div>

@@ -1,0 +1,168 @@
+<ul class="info_list">
+  <li class="info_item">
+    <div class="info_item_field">
+      Location:
+    </div>
+    <div class="info_value_coordinate" >
+      <div class="info_coordinate">x: <span class="info_item_value">{{xPosition}}</span></div>
+      <div class="info_coordinate">y: <span class="info_item_value">{{yPosition}}</span></div>
+    </div>
+  </li>
+  <li class="info_item">
+    <div class="info_item_field">
+      Status:
+    </div>
+    <div class="info_value_coordinate" >
+      <div class="info_item_value">{{getStatus(infoTile.availableForSale, infoTile.availableForRent)}}</div>
+    </div>
+  </li>
+  <li class="info_item">
+    <div class="info_item_field">
+      Owner:
+    </div>
+    <div class="info_value_coordinate" >
+      <a
+        *ngIf="infoTile.owner != '0x0000000000000000000000000000000000000000'"
+        class="info_item_value info_item_owned"
+        href='{{ownerLink}}'
+      >
+        {{getOwner(infoTile.owner)}}
+      </a>
+      <div
+        class="info_item_value"
+        *ngIf="infoTile.owner == '0x0000000000000000000000000000000000000000'"
+      >
+        None
+      </div>
+    </div>
+  </li>
+  <li class="info_item">
+    <div class="info_item_field">
+      Last action:
+    </div>
+    <div class="info_value_coordinate" >
+      <div class="info_item_value">{{infoTile.lastAction}}</div>
+    </div>
+  </li>
+
+  <li class="info_item" *ngIf="statusTile !== 'YOUR TILE'">
+    <div class="info_item_field">
+      Sale:
+    </div>
+    <div class="info_value_coordinate" >
+      <div class="info_item_value">{{getAvailableForSale()}}</div>
+    </div>
+  </li>
+  <li class="info_item" *ngIf="statusTile !== 'YOUR TILE'">
+    <div class="info_item_field">
+      Rent:
+    </div>
+    <div class="info_value_coordinate" >
+      <div class="info_item_value">{{getAvailableForRent()}}</div>
+    </div>
+  </li>
+  <div *ngIf="statusTile === 'YOUR TILE'" class="changePrice">
+    <li class="info_item">
+      <span class="line"></span>
+    </li>
+    <li class="info_item" (click)="changeOpenSettings('sale')">
+      <div class="info_item_field change-field">
+        Sale
+        <img
+          class="dropdown-img"
+          src="{{isOpenSale ?
+          './../../../assets/uploder/info/arrowUp.svg' :
+          './../../../assets/uploder/info/arrowDown.svg'}}"
+          alt="arrow sale" [width]="12" [height]="12">
+      </div>
+      <div class="info_value_coordinate" >
+        <div class="info_item_value">{{getAvailableForSale()}}</div>
+      </div>
+    </li>
+    <div *ngIf="isOpenSale">
+      <li class="info_item">
+        <div class="info_item_field">
+          Cost:
+        </div>
+        <div class="info_coordinate input-container" >
+          <input
+            type="text"
+            class="bare-input"
+            placeholder="0"
+            maxlength="8"
+            [ngModel]="inputOptions.costSale"
+            (ngModelChange)="onNumericInputChange($event, 'costSale')">
+          ETH
+        </div>
+      </li>
+      <button class="submitter submitter-yellow" (click)="setTileSale()">Put up for sale</button>
+      <li class="info_item">
+        <span class="line"></span>
+      </li>
+    </div>
+    <li class="info_item" (click)="changeOpenSettings('rent')">
+      <div class="info_item_field change-field">
+        Rent
+        <img
+          class="dropdown-img"
+          src="{{isOpenRent ?
+          './../../../assets/uploder/info/arrowUp.svg' :
+          './../../../assets/uploder/info/arrowDown.svg'}}"
+          alt="arrow rent" [width]="12" [height]="12">
+      </div>
+      <div class="info_value_coordinate">
+        <div class="info_item_value">{{getAvailableForRent()}}</div>
+      </div>
+    </li>
+    <div *ngIf="isOpenRent">
+      <li class="info_item">
+        <div class="info_item_field">
+          Cost:
+        </div>
+        <div class="info_coordinate input-container" >
+          <input
+            type="text"
+            class="bare-input"
+            placeholder="0"
+            maxlength="8"
+            [ngModel]="inputOptions.costRent"
+            (ngModelChange)="onNumericInputChange($event, 'costRent')"
+            />
+          ETH/per day
+        </div>
+      </li>
+      <li class="info_item">
+        <div class="info_item_field">
+          Minimum period:
+        </div>
+        <div class="info_coordinate input-container" >
+          <input
+            type="text"
+            class="bare-input"
+            placeholder="0"
+            maxlength="8"
+            [ngModel]="inputOptions.minPeriod"
+            (ngModelChange)="onNumericInputChange($event, 'minPeriod')">
+          days
+        </div>
+      </li>
+      <li class="info_item">
+        <div class="info_item_field">
+          Maximum period:
+        </div>
+        <div class="info_coordinate input-container" >
+          <input
+            type="text"
+            class="bare-input"
+            placeholder="0"
+            maxlength="8"
+            [ngModel]="inputOptions.maxPeriod"
+            (ngModelChange)="onNumericInputChange($event, 'maxPeriod')">
+          days
+        </div>
+      </li>
+      <button class="submitter submitter-yellow" (click)="setTileRent()">Put up for rent</button>
+    </div>
+  </div>
+  <button *ngIf="infoTile.availableForSale && statusTile !== 'YOUR TILE'" class="submitter submitter-yellow" (click)="buyTile()">Buy a tile for {{infoTile.price}} ETH</button>
+</ul>

@@ -1,0 +1,14 @@
+<div *ngIf="pageTitle" class="page-container">
+  <div class="info-container">
+    <div class="header-container">
+      <h1 class="header">{{pageTitle}}</h1>
+      <img class="close-icon" alt="close button" src="assets/closeIcon.svg" (click)="closeMenu()"/>
+    </div>
+
+    <div class="information-block">
+      <app-about-digitiles *ngIf="pageTitle === 'About digitiles'"></app-about-digitiles>
+    </div>
+
+    <img src="../../assets/info-page/basement.svg" alt="basement"/>
+  </div>
+</div>

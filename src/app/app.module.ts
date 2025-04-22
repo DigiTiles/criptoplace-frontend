@@ -12,6 +12,18 @@ import {FormsModule} from "@angular/forms";
 import { MetamaskService } from './metamask/metamask.service';
 import { CurrencySelectorComponent } from './currency-selector/currency-selector.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PaintingComponent } from './uploader/painting/painting.component';
+import { ImageComponent } from './uploader/image/image.component';
+import { InformationComponent } from './uploader/information/information.component';
+import { StageInfoComponent } from './stage-info/stage-info.component';
+import { HeaderComponent } from './header/header.component';
+import {NgOptimizedImage} from "@angular/common";
+import { InfoPageComponent } from './info-page/info-page.component';
+import { AboutDigitilesComponent } from './info-page/about-digitiles/about-digitiles.component';
+import { ProjectFeaturesComponent } from './info-page/project-features/project-features.component';
+import { ProjectRoadmapComponent } from './info-page/project-roadmap/project-roadmap.component';
+import { PricingComponent } from './info-page/pricing/pricing.component';
+import { NftComponent } from './info-page/nft/nft.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +34,25 @@ import { NgSelectModule } from '@ng-select/ng-select';
     InfoRuComponent,
     InfoEngComponent,
     InfoComponent,
-    CurrencySelectorComponent
+    CurrencySelectorComponent,
+    PaintingComponent,
+    ImageComponent,
+    InformationComponent,
+    StageInfoComponent,
+    HeaderComponent,
+    InfoPageComponent,
+    AboutDigitilesComponent,
+    ProjectFeaturesComponent,
+    ProjectRoadmapComponent,
+    PricingComponent,
+    NftComponent
   ],
   imports: [
     BrowserModule,
     NgSelectModule,
     FormsModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    NgOptimizedImage
   ],
   providers: [MetamaskService],
   bootstrap: [AppComponent]

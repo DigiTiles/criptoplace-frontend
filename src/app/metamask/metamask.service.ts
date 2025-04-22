@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {getAddress} from "ethers/lib/utils";
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class MetamaskService {
     if (typeof window.ethereum !== 'undefined') {
       try {
         //@ts-ignore
-        await ethereum.request({ method: 'eth_requestAccounts' });
+        this.currentAccount = await ethereum.request({ method: 'eth_requestAccounts' });
       } catch (error) {
         console.log(error);
         alert('user rejected login');
@@ -23,6 +24,15 @@ export class MetamaskService {
       alert(
         'This Web3 application \r\nUse MetaMask extension to use the application features'
       );
+    }
+  }
+
+  public async getAccount() {
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    if (accounts.length > 0) {
+      return getAddress(accounts[0]);
+    } else  {
+      return 'none';
     }
   }
 

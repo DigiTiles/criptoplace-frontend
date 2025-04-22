@@ -1,0 +1,24 @@
+<div class="painting-container">
+  <div class="grid">
+    <div *ngFor="let row of grid; let rowIndex = index" class="row">
+      <div *ngFor="let color of row; let colIndex = index"
+           class="cell"
+           [style.backgroundColor]="color"
+           (click)="setColor(rowIndex, colIndex)">
+      </div>
+    </div>
+  </div>
+  <div class="right-side">
+    <div class="palette">
+      <div class="palette-grid">
+        <div *ngFor="let color of paletteColors"
+             class="palette-cell"
+             [ngClass]="{ selected: selectedColor === color }"
+             [style.backgroundColor]="color"
+             (click)="selectColor(color)">
+        </div>
+      </div>
+    </div>
+    <button class="button" (click)="saveToBase64()">Done</button>
+  </div>
+</div>

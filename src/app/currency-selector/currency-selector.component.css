@@ -1,0 +1,76 @@
+.container {
+  position: relative;
+  color: #FEFDF1;
+}
+
+.dropdown {
+  width: 16px;
+  height: 8px;
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.content {
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  margin-top: 40px;
+  width: 230px;
+  border: 6px solid rgb(166, 239, 104);
+  cursor: pointer;
+  box-shadow: 6px 6px 0 0 #F266FF;
+}
+
+.content-right {
+  right: 0;
+}
+
+.content-left {
+  left: 0;
+}
+
+.coordinate-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  gap: 20px;
+}
+
+.curName {
+  min-width: 40px;
+  align-self: center;
+}
+
+.curImg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 2px;
+}
+
+.list {
+  width: auto;
+}
+
+.list__select.active {
+  background-color: rgb(92, 178, 24);
+}
+
+.list__select {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 0 10px 20px;
+  background: #7C4FFF;
+  border-bottom: 1px solid #A6EF68;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=currency-selector.component.css.map */

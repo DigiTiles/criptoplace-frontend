@@ -1,46 +1,38 @@
-<div class="uploader">
+<div [ngClass]="isOpen ? 'uploader' : 'uploaderHide'">
   <div class="uploaderHeading">
     <p class="uploaderName">Tile 16 x 16</p>
     <div class="box">
-      <p class="uploader_status">FREE</p>
+      <p class="uploader_status">{{statusTile}}</p>
     </div>
-    <button class="closeIcon" src="/assets/closeIcon.svg"></button>
+    <button class="closeIcon" src="/assets/closeIcon.svg" (click)="closeMenu()"></button>
   </div>
   <div class="uploaderArea">
     <div class="uploadChanger">
-      <button class="changeButton">Image</button>
-      <button class="changeButton">Painting</button>
-      <button class="changeButton">Info</button>
-    </div>
-    <div class="uploadImg hide">
-      <label class="imgPreview">
-        <input type="file" accept="image/png" hidden />
-      </label>
-      <div class="imgSubmitArea">
-        <button class="imgBtn">Donwload Image</button>
-        <button class="imgBtn">Done</button>
-      </div>
+      <button
+        class="changeButton"
+        (click)="setOpenButton('image')"
+        [class.active]="openTab === 'image'"
+      >Image</button>
+      <button
+        class="changeButton"
+        (click)="setOpenButton('paint')"
+        [class.active]="openTab === 'paint'"
+      >Painting</button>
+      <button
+        class="changeButton"
+        (click)="setOpenButton('info')"
+        [class.active]="openTab === 'info'"
+      >Info</button>
     </div>
     <div class="info_tab">
-      <div>
-        <ul class="info_list">
-          <li class="info_item">Location:</li>
-          <li class="info_item">Status:</li>
-          <li class="info_item">Owner:</li>
-          <li class="info_item">Last action:</li>
-          <li class="info_item">Sale:</li>
-          <li class="info_item">Rent:</li>
-        </ul>
+      <div *ngIf="openTab === 'image'">
+        <app-image [xPosition]="xPosition" [yPosition]="yPosition" [image]="image"></app-image>
       </div>
-      <div>
-        <ul class="info_list">
-          <li class="info_status">x: y:</li>
-          <li class="info_status">Free</li>
-          <li class="info_status">No</li>
-          <li class="info_status">No</li>
-          <li class="info_status">No</li>
-          <li class="info_status">No</li>
-        </ul>
+      <div *ngIf="openTab === 'info'" class="info_block">
+        <app-information [xPosition]="xPosition" [yPosition]="yPosition" [infoTile]="infoTile" [statusTile]="statusTile"></app-information>
+      </div>
+      <div *ngIf="openTab === 'paint'">
+        <app-painting [xPosition]="xPosition" [yPosition]="yPosition"  [image]="image"></app-painting>
       </div>
     </div>
   </div>

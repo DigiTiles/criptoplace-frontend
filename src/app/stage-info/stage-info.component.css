@@ -1,0 +1,117 @@
+.stage-info-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 142px;
+  gap: 63px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FEFDF1;
+  background-color: #7C4FFF;
+  height: 60px;
+  box-shadow: 6px 6px 0 0 #F266FF;
+}
+
+.container-selector {
+  cursor: pointer;
+  display: block;
+  width: 290px;
+}
+
+.dropdown {
+  width: 16px;
+  height: 8px;
+  margin: 0 24px 0 auto;
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 290px;
+  height: 60px;
+}
+
+.content {
+  border: 6px solid rgb(166, 239, 104);
+  cursor: pointer;
+  box-shadow: 6px 6px 0 0 #F266FF;
+}
+
+.curName {
+  width: 130px;
+  align-self: center;
+}
+
+.curImg {
+  width: 28px;
+  height: 28px;
+  padding-left: 20px;
+}
+
+.list__select.active {
+  background-color: rgb(92, 178, 24);
+}
+
+.list__select {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 280px;
+  height: 50px;
+  padding: 10px 0 10px 0;
+  background: #7C4FFF;
+  border-bottom: 1px solid #A6EF68;
+  cursor: pointer;
+}
+
+.text {
+  font-family: "Syne", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 34px;
+  text-align: center;
+  text-transform: uppercase;
+  font-feature-settings: "pnum" on, "lnum" on;
+  letter-spacing: 2px;
+}
+
+.container-stage {
+  width: 180px;
+}
+
+.container-purchases {
+  width: 330px;
+}
+
+.number-container {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.h5-text {
+  font-size: 18px;
+  line-height: 28px;
+  color: #F266FF;
+}
+
+.text-container {
+  margin-left: 10px;
+  text-transform: lowercase;
+}
+
+.container-filled {
+  width: 290px;
+}
+
+/*# sourceMappingURL=stage-info.component.css.map */

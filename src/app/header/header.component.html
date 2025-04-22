@@ -1,0 +1,13 @@
+<div class="header-container ">
+  <div class="header">
+    <img class="logo" src="/assets/Logo.svg" alt="Logo">
+    <ul class="header-links text-header">
+      <li class="link"><app-currency-selector [tiles]="myTiles" [isImage]="true" [variable]="variableTile" [isRight]="true"></app-currency-selector></li>
+      <li class="link"><app-currency-selector [tiles]="about" [isImage]="false" [variable]="about[0]" [isRight]="false"></app-currency-selector></li>
+      <li class="link" (click)="changePage('Pricing')">Pricing</li>
+      <li class="link" (click)="changePage('NFT')">NFT</li>
+      <div class="metaLogo" (click)="metaCheck()"  src="/assets/metamask_disabled.svg"></div>
+    </ul>
+  </div>
+</div>
+
