@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
       const y = 33554432 + Number(tiles[i].y);
       this.myTiles.push({
         id: i,
-        src: `http://localhost:8080/tiles/26x${x}x${y}.png?`,
+        src: `https://digitiles.itwis-demos.com:8080/tiles/26x${x}x${y}.png?`,
         alt: `plug my tile ${i}`,
         xPosition: tiles[i].x,
         yPosition: tiles[i].y,
