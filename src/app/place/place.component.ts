@@ -127,7 +127,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
         self.selectedX = tileCord[1] - 33554432;
         self.selectedY = tileCord[2] - 33554432;
         self.selectedImage =
-          `https://digitiles.itwis-demos.com:8080/tiles/26x${tileCord[1]}x${tileCord[2]}.png?` +
+          `https://digitiles.itwis-demos.com/tiles/26x${tileCord[1]}x${tileCord[2]}.png?` +
           Math.random();
 
         const coordinatesPerTile = 0.59717;
@@ -160,7 +160,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
   }
 
   getTileUrl(): string {
-    return 'https://digitiles.itwis-demos.com:8080/tiles/{z}x{x}x{y}.png?v=' + this.tileVersion;
+    return 'https://digitiles.itwis-demos.com/tiles/{z}x{x}x{y}.png?v=' + this.tileVersion;
   }
 
   refreshTiles(): void {
