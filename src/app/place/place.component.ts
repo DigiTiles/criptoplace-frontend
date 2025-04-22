@@ -176,7 +176,7 @@ export class PlaceComponent implements OnInit, AfterViewInit {
   }
 
   initWebSocket(): void {
-    this.socket = new WebSocket('ws://localhost:7070');
+    this.socket = new WebSocket('ws://localhost:10077');
 
     this.socket.onopen = () => {};
 
