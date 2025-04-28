@@ -63,7 +63,6 @@ export class PaintingComponent implements OnChanges{
 
   async loadFromImageURL(imageURL: string) {
     const image = new Image();
-    image.crossOrigin = 'Anonymous';
     image.src = imageURL;
     await new Promise<void>((resolve, reject) => {
       image.onload = () => resolve();

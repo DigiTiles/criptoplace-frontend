@@ -142,12 +142,13 @@ export class ContractService {
     this.provider = new ethers.providers.Web3Provider(window.ethereum);
     await this.provider.send('eth_requestAccounts', []);
     this.signer = this.provider.getSigner();
+    console.log('Signer:', this.signer);
     this.contract = new ethers.Contract(this.contractAddress, this.abi, this.signer);
   }
 
   async getTileInfo(x: number, y: number): Promise<any> {
     if (!this.contract) {
-      throw new Error('Contract not initialized');
+      throw new Error('Contract not initialized getTileInfo');
     }
     try {
       const tile = await this.contract.getTileInfo(x, y);
@@ -178,6 +179,25 @@ export class ContractService {
     try {
     const price = await this.contract.getPrice(x, y, '0x0000000000000000000000000000000000000000');
     await this.contract.buy(x, y, {value: price});
+    } catch (error: any) {
+      if (error.code === "INSUFFICIENT_FUNDS") {
+        alert("Недостаточно средств для выполнения транзакции.");
+      } else if (error.code === -32603) {
+        alert("Недостаточно средств на счете для оплаты газа и транзакции.");
+      } else {
+        console.error("Unknown error: ", error);
+      }
+    }
+  }
+
+  async rent(x: number, y: number, period:string, rentPrice: number): Promise<void> {
+    if (!this.contract) {
+      throw new Error('Contract not initialized');
+    }
+    try {
+      const price = ethers.utils.parseEther((Number(period) * rentPrice).toString());
+      console.log('Price:', price);
+      await this.contract.rent(x, y, period, {value: price});
     } catch (error: any) {
       if (error.code === "INSUFFICIENT_FUNDS") {
         alert("Недостаточно средств для выполнения транзакции.");

@@ -164,5 +164,39 @@
       <button class="submitter submitter-yellow" (click)="setTileRent()">Put up for rent</button>
     </div>
   </div>
+  <div *ngIf="infoTile.availableForRent && statusTile !== 'YOUR TILE'">
+    <li class="info_item">
+      <div class="info_item_field">
+        Minimum period:
+      </div>
+      <div class="info_value_coordinate" >
+        <div class="info_item_value">{{infoTile.minRentPeriod}}</div>
+      </div>
+    </li>
+    <li class="info_item">
+      <div class="info_item_field">
+        Maximum period:
+      </div>
+      <div class="info_value_coordinate" >
+        <div class="info_item_value">{{infoTile.maxRentPeriod}}</div>
+      </div>
+    </li>
+    <li class="info_item">
+      <div class="info_item_field">
+        Select a period:
+      </div>
+      <div class="info_coordinate input-container" >
+        <input
+          type="text"
+          class="bare-input"
+          placeholder="0"
+          maxlength="8"
+          [ngModel]="inputOptions.selectPeriod"
+          (ngModelChange)="onNumericInputChange($event, 'selectPeriod')">
+        days
+      </div>
+    </li>
+    <button class="submitter submitter-yellow" (click)="rentTile()">Rent a tile {{getSumRent()}} ETH</button>
+  </div>
   <button *ngIf="infoTile.availableForSale && statusTile !== 'YOUR TILE'" class="submitter submitter-yellow" (click)="buyTile()">Buy a tile for {{infoTile.price}} ETH</button>
 </ul>

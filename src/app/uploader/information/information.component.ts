@@ -34,6 +34,7 @@ export class InformationComponent implements OnInit {
     costRent: '',
     minPeriod: '',
     maxPeriod: '',
+    selectPeriod: ''
   }
 
   constructor(public criptoService: ContractService) {}
@@ -109,5 +110,17 @@ export class InformationComponent implements OnInit {
       .replace(/^([^.]*\.)|\./g, '$1');
 
     this.inputOptions[field] = filtered;
+  }
+
+  rentTile() {
+    this.criptoService.rent(this.xPosition, this.yPosition, this.inputOptions.selectPeriod, this.infoTile.rentPrice);
+  }
+
+  getSumRent() {
+    if (this.inputOptions.selectPeriod) {
+      return this.inputOptions.selectPeriod * this.infoTile.rentPrice;
+    } else {
+      return '0';
+    }
   }
 }
