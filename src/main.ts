@@ -11,8 +11,9 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-// Storage deployed to: 0x1dfDc08F0C8864da6Ef980fe5AeeCcCb6CF0fA47
-// Cripto deployed to: 0x3C27c4100dbC3Ee94Eb3600610b0e7A4a6acCf0D
+// Storage deployed to: 0x27292645cB9b3163A0faC2DA562c7C792fbc5e2D
+// Cripto deployed to: 0x4E7eFf76bB26a49796F29Ca6bD4E07152D47b670
+
 
 
 
