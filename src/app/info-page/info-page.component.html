@@ -7,6 +7,10 @@
 
     <div class="information-block">
       <app-about-digitiles *ngIf="pageTitle === 'About digitiles'"></app-about-digitiles>
+      <app-project-features *ngIf="pageTitle === 'Project Features'"></app-project-features>
+      <app-project-roadmap *ngIf="pageTitle === 'Roadmap'"></app-project-roadmap>
+      <app-pricing *ngIf="pageTitle === 'Pricing'"></app-pricing>
+      <app-nft *ngIf="pageTitle === 'NFT'"></app-nft>
     </div>
 
     <img src="../../assets/info-page/basement.svg" alt="basement"/>

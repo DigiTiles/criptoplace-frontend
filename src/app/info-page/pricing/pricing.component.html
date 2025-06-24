@@ -1,1 +1,26 @@
-<p>pricing works!</p>
+<p class="text purple-text text-fp">Initially, the price of each tile is fixed.</p>
+<div class="paragraph paragraph-margin">
+  <div class="first-text-container pricing-first-container">
+    <div class="numbered-list-entity">
+      <img class="bullet" src="assets/info-page/pricing/first-bullet.svg"  alt="first-bullet">
+      <p class="text">The central tile costs 1 ETH (or another coin, depending on the blockchain on which
+        the smart contract is deployed).</p>
+    </div>
+    <div class="numbered-list-entity">
+      <img class="bullet" src="assets/info-page/pricing/second-bullet.svg" alt="second-bullet">
+      <p class="text">The 4 tiles around the central one cost 0.25 ETH each.</p>
+    </div>
+    <div class="numbered-list-entity">
+      <img class="bullet" src="assets/info-page/pricing/third-bullet.svg" alt="third-bullet">
+      <p class="text">The 8 tiles of the next circle are worth 0.125 ETH each.</p>
+    </div>
+  </div>
+  <img src="assets/info-page/pricing/first-img.svg" alt="first image">
+</div>
+<div class="paragraph paragraph-second">
+  <img src="assets/info-page/pricing/second-img.svg" alt="second image">
+  <p class="text purple-text text-fp">The basic idea is that all tiles of one circle costs a total of 1 ETH.
+    But at the same time a tile cannot cost less than 0.001 ETH. </p>
+</div>
+<p class="text indent-text upper-text">Or if we speak in formula language:</p>
+<p class="text purple-text text-fp">price = MAX(1 / MAX(1, (ABS(x) + ABS(y)) * 4), 0.001)</p>

@@ -1,3 +1,21 @@
+.paragraph-margin {
+  margin-top: 40px;
+}
 
+.pricing-first-container {
+  margin-right: 80px !important;
+  gap: 30px;
+}
+
+.numbered-list-entity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bullet {
+  margin: 0 20px 0 0;
+}
 
 /*# sourceMappingURL=nft.component.css.map */

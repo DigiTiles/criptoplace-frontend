@@ -14,7 +14,9 @@ export class InfoPageComponent implements OnInit {
   ngOnInit(): void {
     this.pageService.page$.subscribe((page) => {
       this.pageTitle = page;
+      console.log(this.pageTitle )
     });
+
   };
 
   closeMenu(){

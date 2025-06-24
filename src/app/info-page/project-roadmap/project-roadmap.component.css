@@ -1,3 +1,27 @@
+.text-container-pr {
+  display: flex;
+  justify-content: end !important;
+}
 
+.text-rp {
+  margin-bottom: 20px;
+}
+
+.second-paragraph-pr {
+  margin-top: 160px;
+}
+
+.second-text-container-pr {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  gap: 40px;
+}
+
+.third-text-pr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /*# sourceMappingURL=project-roadmap.component.css.map */
