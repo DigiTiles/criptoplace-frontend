@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   pageTitle: string = '';
   hash = '';
   myTiles: YourTile[] = [];
+  protected connectionResult: boolean = false;
 
   variableTile: YourTile = {
     id: 100000,
@@ -53,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private readonly extensionService: MetamaskService,
+    protected readonly extensionService: MetamaskService,
     public pageService: InfoPageService,
     public contractService: ContractService,
   ) {}
@@ -61,12 +62,16 @@ export class HeaderComponent implements OnInit {
   title = 'DigiTiles';
 
   async ngOnInit(): Promise<void> {
-    this.route.fragment.pipe(tap(console.log)).subscribe(
+    await this.extensionService.checkExtension();
+    this.extensionService.extensionStatus$.subscribe(status => {
+      this.connectionResult = status;
+    })
+      this.route.fragment.pipe(tap(console.log)).subscribe(
       (hash) => (this.hash = hash || ''),
       (error) => console.error(error),
       () => console.log('complite!')
     );
-    const address = await this.extensionService.getAccount();
+    const address = this.extensionService.CurrentAccount;
     const tiles = await this.contractService.getTilesByOwner(address);
     for (let i = 0; i < tiles.length; i++) {
       const x =  33554432 + Number(tiles[i].x);
@@ -86,9 +91,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  metaCheck() {
-    this.extensionService.checkExtension();
-  }
+
 
   changePage(page: string) {
     this.pageService.changePage(page);

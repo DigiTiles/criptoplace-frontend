@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: calc(100vh - 110px);
   height: auto;
   top: 110px;
   background-color: #B5EE85;
@@ -11,7 +12,6 @@
 .info-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin: 80px 0 90px 0;
   max-width: 1060px;
   width: 1060px;

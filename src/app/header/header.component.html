@@ -6,7 +6,11 @@
       <li class="link"><app-currency-selector [tiles]="about" [isImage]="false" [variable]="about[0]" [isRight]="false"></app-currency-selector></li>
       <li class="link" (click)="changePage('Pricing')">Pricing</li>
       <li class="link" (click)="changePage('NFT')">NFT</li>
-      <div class="metaLogo" (click)="metaCheck()"  src="/assets/metamask_disabled.svg"></div>
+      <img
+        class="metaLogo"
+        (click)="changePage('Connect your wallet')"
+        [src]=" connectionResult ? '/assets/metamask_enabled.svg' : '/assets/metamask_disabled.svg'"
+        [alt]="(connectionResult ? 'Enable' : 'Disable') + ' MetaMask'"/>
     </ul>
   </div>
 </div>

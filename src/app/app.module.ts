@@ -24,6 +24,7 @@ import { ProjectFeaturesComponent } from './info-page/project-features/project-f
 import { ProjectRoadmapComponent } from './info-page/project-roadmap/project-roadmap.component';
 import { PricingComponent } from './info-page/pricing/pricing.component';
 import { NftComponent } from './info-page/nft/nft.component';
+import { MetamaskComponent } from './info-page/metamask/metamask.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NftComponent } from './info-page/nft/nft.component';
     ProjectFeaturesComponent,
     ProjectRoadmapComponent,
     PricingComponent,
-    NftComponent
+    NftComponent,
+    MetamaskComponent
   ],
   imports: [
     BrowserModule,

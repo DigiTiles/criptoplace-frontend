@@ -11,8 +11,9 @@
       <app-project-roadmap *ngIf="pageTitle === 'Roadmap'"></app-project-roadmap>
       <app-pricing *ngIf="pageTitle === 'Pricing'"></app-pricing>
       <app-nft *ngIf="pageTitle === 'NFT'"></app-nft>
+      <app-metamask *ngIf="pageTitle === 'Connect your wallet'"></app-metamask>
     </div>
 
-    <img src="../../assets/info-page/basement.svg" alt="basement"/>
+    <img *ngIf="pageTitle != 'Connect your wallet'" src="../../assets/info-page/basement.svg" alt="basement"/>
   </div>
 </div>

@@ -46,7 +46,7 @@ export class UploaderComponent implements OnInit{
       this.infoTile = await this.criptoService.getTileInfo(pos.x, pos.y);
       this.getStatus();
     });
-    this.userAddress = await this.metamaskService.getAccount()
+    this.userAddress = this.metamaskService.CurrentAccount
   }
 
   setOpenButton(typeMenu: string){

@@ -11,4 +11,27 @@ html, body {
   cursor: url("/assets/cursor.png"), auto;
 }
 
+.button {
+  height: 60px;
+  width: 170px;
+  cursor: pointer;
+  font-family: "Syne", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+}
+
+.button-yellow {
+  background-color: #F8E64B;
+  border: none;
+}
+
+.button-white {
+  background-color: #FFFFFF;
+  border: 2px solid #F8E64B;
+}
+
 /*# sourceMappingURL=styles.css.map */

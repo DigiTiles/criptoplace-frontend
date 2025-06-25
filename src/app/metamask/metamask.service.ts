@@ -1,38 +1,38 @@
 import { Injectable } from '@angular/core';
 import {getAddress} from "ethers/lib/utils";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class MetamaskService {
-  currentAccount = null;
-  constructor() {
-    // setInterval(this.getAccount, 3000);
+
+  private currentAccount:string = '';
+  private extensionStatusSubject = new BehaviorSubject<boolean>(false); // Начальное значение false
+  public extensionStatus$ = this.extensionStatusSubject.asObservable();
+
+  constructor() {}
+
+  public get CurrentAccount(): string {
+    return this.currentAccount;
   }
 
-  public async checkExtension() {
-    //@ts-ignore
-    if (typeof window.ethereum !== 'undefined') {
+  public async checkExtension(): Promise<void> {
       try {
-        //@ts-ignore
-        this.currentAccount = await ethereum.request({ method: 'eth_requestAccounts' });
+        await this.getAccount();
+        this.extensionStatusSubject.next(true);
       } catch (error) {
-        console.log(error);
-        alert('user rejected login');
+        console.error(error);
+        this.extensionStatusSubject.next(false);
       }
-    } else {
-      alert(
-        'This Web3 application \r\nUse MetaMask extension to use the application features'
-      );
-    }
   }
 
-  public async getAccount() {
+  private async getAccount(): Promise<string> {
     const accounts = await window.ethereum.request({ method: 'eth_accounts' });
     if (accounts.length > 0) {
       return getAddress(accounts[0]);
     } else  {
-      return 'none';
+      throw new Error('No accounts found');
     }
   }
 
