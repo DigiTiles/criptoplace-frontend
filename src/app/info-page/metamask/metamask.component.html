@@ -1,0 +1,12 @@
+<div class="body-container">
+  <p class="text purple-text text-size">
+    To purchase a TILES in CrIpto plaCE, you need to connect your wallet
+  </p>
+  <div class="button-container">
+
+    <button class="button button-white custom-button" (click)="installMetaMask()" >Install MetaMask</button>
+    <button class="button button-green custom-button" *ngIf="connectionResult">Your MetaMask connected</button>
+    <button class="button button-yellow custom-button" (click)="connectedMetaMask()" *ngIf="!connectionResult">Connect wallet</button>
+  </div>
+</div>
+
